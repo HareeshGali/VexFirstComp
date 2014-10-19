@@ -3,7 +3,7 @@
  *
  * This file should contain the user operatorControl() function and any functions related to it.
  *
- * Copyright (c) 2011-2014, Purdue University ACM SIG BOTS.
+ * Copyright (c) 2011-2013, Purdue University ACM SIG BOTS.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,6 +33,7 @@
  */
 
 #include "main.h"
+#include <API.h>
 
 /*
  * Runs the user operator control code. This function will be started in its own task with the
@@ -51,9 +52,82 @@
  *
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
-void operatorControl() {
+// =======================
+//
+//  ROBOT SEEN FROM ABOVE
+//
+//        ♦ FRONT ♦
+//      ♦           ♦
+//    ♦  4        2   ♦
+//            ↑
+//           ←X→
+//            ↓
+//    ♦  5        3   ♦
+//      ♦           ♦
+//        ♦       ♦
 
+// Controller 1/2, Stick L/R, Axis X/Y
+
+void operatorControl() {
 	while (1) {
-		delay(20);
+
+		int Ch4 = joystickGetAnalog(1, 4);
+				int Ch1 = joystickGetAnalog(1, 1);
+				int Ch3 = joystickGetAnalog(1, 3);
+				int Btn6U = joystickGetDigital(1, 6, JOY_UP) ;
+				int Btn6D = joystickGetDigital(1, 6, JOY_DOWN);
+				int Btn5U = joystickGetDigital(1, 5, JOY_UP);
+				int Btn5D = joystickGetDigital(1, 6, JOY_DOWN);
+
+				// Y component, X component, Rotation
+				motorSet(2,  -Ch3 - Ch1 + Ch4);
+				motorSet(3,  -Ch3 - Ch1 - Ch4);
+				motorSet(4,  -Ch3 + Ch1 - Ch4);
+				motorSet(5, -Ch3 + Ch1 + Ch4);
+
+				if(Btn5D == 1) {
+							motorSet(1, 127);
+							motorSet(6, 127);
+							motorSet(7, 127);
+							motorSet(8, 127);
+							motorSet(9, 127);
+							motorSet(10, 127);
+							} else if(Btn5U == 1) {
+
+								motorSet(1, -127);
+								motorSet(6, -127);
+    							motorSet(7, -127);
+	    						motorSet(8, -127);
+								motorSet(9, -127);
+		    					motorSet(10, -127);
+							} else {
+								motorSet(1, 0);
+								motorSet(6, 0);
+			    				motorSet(7, 0);
+								motorSet(8, 0);
+								motorSet(9, 0);
+								motorSet(10, 0);
+
+						}
+
+				if(Btn6U == 1) {
+
+						digitalWrite(12, HIGH);
+
+							} else if(Btn6D == 1) {
+
+								digitalWrite(12, LOW);
+
+							} else {
+
+								digitalWrite(12, HIGH);
+							}
+
+
+
+				// Motor values can only be updated every 20ms
+				delay(20);
+
 	}
+}
 }

@@ -3,7 +3,7 @@
  *
  * This file should contain the user autonomous() function and any functions related to it.
  *
- * Copyright (c) 2011-2014, Purdue University ACM SIG BOTS.
+ * Copyright (c) 2011-2013, Purdue University ACM SIG BOTS.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,4 +49,9 @@
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
 void autonomous() {
+
+
+
 }
+}
+

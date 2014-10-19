@@ -3,7 +3,7 @@
  *
  * This file should contain the user initialize() function and any functions related to it.
  *
- * Copyright (c) 2011-2014, Purdue University ACM SIG BOTS.
+ * Copyright (c) 2011-2013, Purdue University ACM SIG BOTS.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,4 +59,5 @@ void initializeIO() {
  * can be implemented in this task if desired.
  */
 void initialize() {
-}
+}}
+
