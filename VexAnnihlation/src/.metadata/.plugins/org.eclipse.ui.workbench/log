@@ -1,0 +1,23 @@
+!SESSION 2014-10-09 22:57:30.287 -----------------------------------------------
+eclipse.buildId=M20120914-1800
+java.version=1.8.0_11
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  --product org.eclipse.platform.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 --product org.eclipse.platform.ide
+
+!ENTRY org.eclipse.equinox.p2.engine 4 4 2014-10-09 22:57:33.592
+!MESSAGE An error occurred while installing the items
+!SUBENTRY 1 org.eclipse.equinox.p2.engine 4 0 2014-10-09 22:57:33.593
+!MESSAGE session context was:(profile=PlatformProfile, phase=org.eclipse.equinox.internal.p2.engine.phases.Install, operand=null --> [R]NewCortexProject 1.0.0.0, action=org.eclipse.equinox.internal.p2.touchpoint.eclipse.actions.InstallBundleAction).
+!SUBENTRY 1 org.eclipse.equinox.p2.touchpoint.eclipse 4 0 2014-10-09 22:57:33.593
+!MESSAGE The artifact file for osgi.bundle,NewCortexProject,1.0.0.0 was not found.
+
+!ENTRY org.eclipse.ui 4 4 2014-10-09 22:58:12.184
+!MESSAGE Plug-in 'org.eclipse.cdt.ui' contributed an invalid Menu Extension (Path: 'project/org.eclipse.cdt.ui.prjmenu' is invalid): org.eclipse.cdt.ui.manageConfigsAction2
+
+!ENTRY org.eclipse.ui 4 4 2014-10-09 22:58:12.187
+!MESSAGE Plug-in 'org.eclipse.cdt.ui' contributed an invalid Menu Extension (Path: 'project/org.eclipse.cdt.ui.prjmenu' is invalid): org.eclipse.cdt.ui.buildConfigMenuAction
+
+!ENTRY org.eclipse.ui 4 4 2014-10-09 22:58:12.188
+!MESSAGE Plug-in 'org.eclipse.cdt.ui' contributed an invalid Menu Extension (Path: 'project/org.eclipse.cdt.ui.prjmenu' is invalid): org.eclipse.cdt.ui.wsselection

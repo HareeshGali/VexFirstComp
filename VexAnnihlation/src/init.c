@@ -3,7 +3,7 @@
  *
  * This file should contain the user initialize() function and any functions related to it.
  *
- * Copyright (c) 2011-2013, Purdue University ACM SIG BOTS.
+ * Copyright (c) 2011-2014, Purdue University ACM SIG BOTS.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,7 +33,8 @@
  */
 
 #include "main.h"
-
+Encoder encoder;
+Encoder encoder2;
 /*
  * Runs pre-initialization code. This function will be started in kernel mode one time while the
  * VEX Cortex is starting up. As the scheduler is still paused, most API functions will fail.
@@ -43,6 +44,8 @@
  * configure a UART port (usartOpen()) but cannot set up an LCD (lcdInit()).
  */
 void initializeIO() {
+	 digitalWrite(12, LOW);
+	    pinMode(12, OUTPUT);
 }
 
 /*
@@ -59,5 +62,8 @@ void initializeIO() {
  * can be implemented in this task if desired.
  */
 void initialize() {
-}}
 
+	 encoder = encoderInit(3, 4, false);
+	 encoder2 = encoderInit(5, 6, false);
+
+}

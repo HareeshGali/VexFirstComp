@@ -62,28 +62,27 @@
 //            ↑
 //           ←X→
 //            ↓
-//    ♦  5        3   ♦
+//    ♦  5       3    ♦
 //      ♦           ♦
 //        ♦       ♦
-
 // Controller 1/2, Stick L/R, Axis X/Y
 
 void operatorControl() {
 	while (1) {
 
-		int Ch4 = joystickGetAnalog(1, 4);
-				int Ch1 = joystickGetAnalog(1, 1);
-				int Ch3 = joystickGetAnalog(1, 3);
+				int C1LX = joystickGetAnalog(1, 4);
+				int C1LY = joystickGetAnalog(1, 3);
+				int C1RX = joystickGetAnalog(1, 1);
 				int Btn6U = joystickGetDigital(1, 6, JOY_UP) ;
 				int Btn6D = joystickGetDigital(1, 6, JOY_DOWN);
 				int Btn5U = joystickGetDigital(1, 5, JOY_UP);
-				int Btn5D = joystickGetDigital(1, 6, JOY_DOWN);
+				int Btn5D = joystickGetDigital(1, 5, JOY_DOWN);
 
 				// Y component, X component, Rotation
-				motorSet(2,  -Ch3 - Ch1 + Ch4);
-				motorSet(3,  -Ch3 - Ch1 - Ch4);
-				motorSet(4,  -Ch3 + Ch1 - Ch4);
-				motorSet(5, -Ch3 + Ch1 + Ch4);
+				motorSet(2, -C1LY - C1LX - C1RX);
+				motorSet(3,  C1LY - C1LX - C1RX);
+				motorSet(4,  C1LY + C1LX - C1RX);
+				motorSet(5, -C1LY + C1LX - C1RX);
 
 				if(Btn5D == 1) {
 							motorSet(1, 127);
@@ -130,4 +129,4 @@ void operatorControl() {
 
 	}
 }
-}
+

@@ -3,7 +3,7 @@
  *
  * This file should contain the user autonomous() function and any functions related to it.
  *
- * Copyright (c) 2011-2013, Purdue University ACM SIG BOTS.
+ * Copyright (c) 2011-2014, Purdue University ACM SIG BOTS.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,10 +48,72 @@
  * The autonomous task may exit, unlike operatorControl() which should never exit. If it does
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
+void pidcontrol(int target) {
+	//reason for the "2" is for right side
+	//final power vals for motors
+	float speed = 0;
+	float speed2 = 0;
+	//how far the robot is from the target and stores previous value
+	float error = 0;
+	float error2= 0;
+	float preverror= 0;
+	float preverror2= 0;
+	//actual pid values, Kp for proportional constant value and Ki for integral constant
+	float Kp = 0.41;
+	float Ki = 0.3;
+	float Kd = 0.09;
+	//stores integral values which is calculated by adding error to itself
+	float integral = 0;
+	float integral2 = 0;
+	//stores derivative calculated by
+	float derivative = 0;
+	float derivative2 = 0;
+	//for timer stores time val in MS
+	long currentTime;
+	//runs until target is reached is essentially a timeout
+    for( currentTime = millis(); currentTime > 5000;) {
+
+
+		//error calculations desired val minus actual
+		error = target - encoderGet(encoder);
+		error2 = target - encoderGet(encoder2);
+		//integral calculations
+		integral = integral + error;
+		integral2 = integral2 + error2;
+		//prevents the integral from getting too big
+		if(error == 0)
+		{
+		integral = 0;
+		}
+
+		if(error == 0)
+		{
+		integral = 0;
+		}
+
+		if ( abs(error) > 40)
+		{
+		integral = 0;
+		}
+
+		if ( abs(error2) > 40)
+		{
+		integral2 = 0;
+		}
+		derivative = error - preverror;
+		derivative2 = error2 - preverror2;
+		//assignment of speed values through calculations
+		speed = Kp * error + Ki*integral + Kd*derivative;
+		speed2 = Kp * error2 + Ki*integral2+ Kd*derivative2;
+
+		motorSet(2,  speed);
+		motorSet(3,  speed);
+		motorSet(4,  speed2);
+		motorSet(5,  speed2);
+
+}
 void autonomous() {
-
-
+	pidcontrol(520);
 
 }
 }
-
